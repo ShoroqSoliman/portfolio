@@ -10,7 +10,7 @@ async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncod
 function gate(){
  $('#app').innerHTML=`<div class="login"><h2 style="margin-bottom:18px">Admin</h2><label>Password</label><input id="pwi" type="password" autofocus><button class="btn" id="pwb" style="width:100%">Log in</button><p class="st" id="pwe" style="margin-top:12px"></p><p class="hint"><a href="index.html" style="color:var(--pk)">Back to site</a></p></div>`;
  const ok=async()=>{if(await sha($('#pwi').value)==(D.pwh||BASE.pwh)){authed=true;adminUI()}else $('#pwe').textContent='Wrong password.'};
- $('#pwb').onclick=ok;$('#pwi').onkeydown=ev=>ev.key=='Enter'&&ok();
+ $('#pwb').onclick=ok;$('#pwi').onkeydown=ev=>{if(ev.key=='Enter')ok()};
 }
 const SCH={text:[['text','Text','bia']],card:[['title','Title','bi'],['sub','Subtitle','bi'],['date','Date','pl'],['text','Description','bia']],tags:[['text','Tags, separated by commas','bi']],media:[['src','Image or video','file']],logo:[['name','Company name','pl'],['src','Logo image','file']]};
 const NAMES={text:'Text',card:'Card',tags:'Tags',media:'Image / Video',logo:'Company logo'};
