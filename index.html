@@ -2,59 +2,17 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Shorouk Soliman | Content Creator & Copywriter</title>
 <meta name="description" content="Content creator and copywriter: ad copy, scripts, SEO and social media content.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="glow" id="gl"></div>
 <div id="app"></div>
-<script src="data.js"></script>
-<script>
-let D,lang=localStorage.getItem('lang')||'ar';
-const t=o=>!o?'':typeof o=='string'?o:(o[lang]||o.en||o.ar||'');
-const e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function block(b){
- switch(b.kind){
-  case 'text':return `<p class="tx" dir="auto">${e(t(b.text))}</p>`;
-  case 'tags':return `<div class="tags">${t(b.text).split(/[,،]/).filter(x=>x.trim()).map(x=>`<span dir="auto">${e(x.trim())}</span>`).join('')}</div>`;
-  case 'card':return `<article class="card">${b.date?`<span class="dt" dir="ltr">${e(b.date)}</span>`:''}<h3 dir="auto">${e(t(b.title))}</h3><h4 dir="auto">${e(t(b.sub))}</h4>${t(b.text)?`<p dir="auto">${e(t(b.text))}</p>`:''}</article>`;
-  case 'media':{const s=b.src||'',y=s.match(/(?:youtu\.be\/|v=)([\w-]{11})/);
-   return `<figure>${y?`<iframe src="https://www.youtube.com/embed/${y[1]}" allowfullscreen loading="lazy"></iframe>`:b.type=='video'?`<video src="${e(s)}" controls playsinline preload="metadata"></video>`:`<img src="${e(s)}" alt="" loading="lazy">`}</figure>`}
- }return '';
-}
-function sec(s){
- const B=k=>s.blocks.filter(b=>b.kind==k).map(block).join('');
- const logos=s.blocks.filter(b=>b.kind=='logo').map(b=>`<div>${b.src?`<img src="${e(b.src)}" alt="${e(b.name)}">`:e(b.name)}</div>`).join('');
- const grid=k=>B(k)?`<div class="grid">${B(k)}</div>`:'';
- return `<section id="${e(s.id)}"><div class="wrap"><h2>${e(t(s.title))}</h2>${B('text')}${B('tags')}${grid('card')}${grid('media')}${logos?`<div class="mq"><div class="mt">${logos+logos}</div></div>`:''}</div></section>`;
-}
-function draw(){
- const p=D.profile,S=D.sections.filter(s=>s.visible!==false),ar=lang=='ar';
- document.documentElement.lang=lang;document.documentElement.dir=ar?'rtl':'ltr';
- document.title=t(p.name)+' | '+t(p.title);
- const nm=t(p.name),ln=p.linkedin;
- document.getElementById('app').innerHTML=`
- <nav><div class="wrap"><a class="logo" href="#top">${e(nm[0]||'S')}<b>.</b></a>
-  <ul>${S.map(s=>`<li><a href="#${e(s.id)}">${e(t(s.title))}</a></li>`).join('')}<li><a href="#contact">${ar?'تواصل':'Contact'}</a></li></ul>
-  <button class="lang" id="lg" aria-label="Language">${ar?'English':'عربي'}</button></div></nav>
- <header class="hero" id="top"><div class="wrap"><div>
-  <small class="in">${e(t(p.title))}</small>
-  <h1 class="in">${e(nm)}</h1>
-  <p class="in">${e(t(p.bio))}</p>
-  <div class="in"><a class="btn" href="#contact">${ar?'نشتغل مع بعض':'Work with me'}</a> <a class="btn o" href="${e(ln)}" target="_blank" rel="noopener">LinkedIn</a>
-  <div class="stats">${(p.stats||[]).map(x=>`<div><b dir="ltr">${e(x.n)}</b><span>${e(t(x.l))}</span></div>`).join('')}</div></div></div>
-  <div class="ph in">${p.photo?`<img src="${e(p.photo)}" alt="${e(nm)}">`:e(nm[0]||'')}</div></div></header>
- ${S.map(sec).join('')}
- <footer id="contact"><div class="wrap"><h2>${ar?'عندك مشروع؟':'Got a project?'}</h2>
-  <a class="big" href="mailto:${e(p.email)}">${e(p.email)}</a>
-  <div class="ln"><a href="tel:${e(p.phone)}" dir="ltr">${e(p.phone)}</a><a href="${e(ln)}" target="_blank" rel="noopener">LinkedIn</a></div>
-  <p style="margin-top:48px;font-size:14px">© ${new Date().getFullYear()} ${e(nm)}</p></div></footer>`;
- document.getElementById('lg').onclick=()=>{lang=ar?'en':'ar';localStorage.setItem('lang',lang);draw()};
-}
-loadData(location.search.includes('preview')).then(d=>{D=d;draw()});
-</script>
+<script src="content.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
