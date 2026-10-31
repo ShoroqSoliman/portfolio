@@ -11,7 +11,7 @@ window.CONTENT={
   "email": "shorouksoliman000@gmail.com",
   "phone": "+201080568318",
   "linkedin": "https://www.linkedin.com/in/shorouq-soliman-8b2a94400/",
-  "photo": "photo.webp",
+  "photo": "photo-v3.webp",
   "stats": [
    {
     "n": "4+",
@@ -284,7 +284,7 @@ window.CONTENT={
     }
    ],
    "cover": {
-    "src": "work-banner.webp",
+    "src": "work-banner-v3.webp",
     "type": "image"
    }
   },
