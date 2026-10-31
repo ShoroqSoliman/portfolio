@@ -8,10 +8,6 @@ window.CONTENT={
    "en": "Content Creator & Copywriter",
    "ar": "كاتبة محتوى و Copywriter"
   },
-  "bio": {
-   "en": "Results-driven content creator with 4+ years in digital marketing: ad copy that converts, SEO strategy and video scripts across Egypt, Saudi Arabia and the UAE. My background in theater directing shapes how I tell stories on screen.",
-   "ar": "كاتبة محتوى بخبرة أكتر من 4 سنين في الديجيتال ماركتنج: إعلانات بتبيع، استراتيجيات SEO، وسكريبتات فيديو في مصر والسعودية والإمارات. خلفيتي في إخراج المسرح بتدّي شغلي حكي بصري أقوى."
-  },
   "email": "shorouksoliman000@gmail.com",
   "phone": "+201080568318",
   "linkedin": "https://www.linkedin.com/in/shorouq-soliman-8b2a94400/",
@@ -31,7 +27,22 @@ window.CONTENT={
      "ar": "أسواق: مصر والسعودية والإمارات"
     }
    }
-  ]
+  ],
+  "lines": [
+   {
+    "en": "Results-driven content creator with 4+ years in digital marketing: ad copy that converts, SEO strategy and video scripts across Egypt, Saudi Arabia and the UAE. My background in theater directing shapes how I tell stories on screen.",
+    "ar": "كاتبة محتوى بخبرة أكتر من 4 سنين في الديجيتال ماركتنج: إعلانات بتبيع، استراتيجيات SEO، وسكريبتات فيديو في مصر والسعودية والإمارات. خلفيتي في إخراج المسرح بتدّي شغلي حكي بصري أقوى."
+   }
+  ],
+  "logo": "S.S",
+  "ring": {
+   "en": "Creativity is like breathing.. essential",
+   "ar": "Creativity is like breathing.. essential"
+  },
+  "strip": {
+   "en": "Ad Copywriting, Scriptwriting, Storyboarding, Social Media Content, SEO Content",
+   "ar": "كتابة إعلانات, سكريبتات, ستوري بورد, محتوى سوشيال ميديا, محتوى SEO"
+  }
  },
  "sections": [
   {
@@ -219,8 +230,63 @@ window.CONTENT={
       "en": "Work samples are coming soon.",
       "ar": "نماذج الأعمال قريبًا."
      }
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
     }
-   ]
+   ],
+   "cover": {
+    "src": "work-banner.webp",
+    "type": "image"
+   }
   },
   {
    "id": "brands",
@@ -308,5 +374,35 @@ window.CONTENT={
    ]
   }
  ],
- "pwh": "888f234c529f062df75b23bb2cd92cef5fdb3b00a8d09f1c7fe4b5b07f966389"
+ "pwh": "888f234c529f062df75b23bb2cd92cef5fdb3b00a8d09f1c7fe4b5b07f966389",
+ "ui": {
+  "contact": {
+   "en": "Contact",
+   "ar": "تواصل"
+  },
+  "workWithMe": {
+   "en": "Work with me",
+   "ar": "نشتغل مع بعض"
+  },
+  "linkedin": {
+   "en": "LinkedIn",
+   "ar": "LinkedIn"
+  },
+  "gotProject": {
+   "en": "Got a project?",
+   "ar": "عندك مشروع؟"
+  },
+  "openProject": {
+   "en": "Open project",
+   "ar": "افتح المشروع"
+  },
+  "projectSoon": {
+   "en": "Project coming soon",
+   "ar": "مشروع قريبًا"
+  },
+  "projectSoonBox": {
+   "en": "Coming soon… this project is being prepared",
+   "ar": "قريبًا… المشروع ده لسه بيتجهز"
+  }
+ }
 };
