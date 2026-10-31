@@ -41,11 +41,10 @@ function sec(s){
  const cards=B('card'),med=B('media'),pj=s.blocks.filter(b=>b.kind=='project').map(proj).join('');
  return `<section id="${e(s.id)}"><div class="wrap"><h2 class="rv">${e(t(s.title))}</h2>${cover(s)}${B('text')}${B('tags')}${cards?`<div class="${s.layout=='timeline'?'tl':'grid'}">${cards}</div>`:''}${med?`<div class="grid">${med}</div>`:''}${pj?`<div class="projs">${pj}</div>`:''}${logos?`<div class="mq rv"><div class="mt">${logos+logos}</div></div>`:''}</div></section>`;
 }
-/* round frame with text that travels around the photo */
+/* round frame: the sentence is written once and slowly circles the photo */
 function ringSVG(){
- const L=559.2,w=(t(D.profile.ring)||'').trim();if(!w)return '';
- const k=Math.max(1,Math.round(86/(w.length+3))),unit=`${e(w)} <tspan class="g">•</tspan> `,one=unit.repeat(k),txt=one+one;
- return `<svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="cp" d="M11,100a89,89 0 1,1 178,0a89,89 0 1,1 -178,0"/></defs><circle class="fr" cx="100" cy="100" r="84"/><text><textPath href="#cp" startOffset="0" textLength="${L*2}" lengthAdjust="spacing" xml:space="preserve">${txt}${txt}<animate attributeName="startOffset" from="0" to="-${L}" dur="38s" repeatCount="indefinite"/></textPath></text></svg>`;
+ const w=(t(D.profile.ring)||'').trim();if(!w)return '';
+ return `<svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="cp" d="M11,100a89,89 0 1,1 178,0a89,89 0 1,1 -178,0"/></defs><circle class="fr" cx="100" cy="100" r="84"/><g><animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="40s" repeatCount="indefinite"/><text><textPath href="#cp" startOffset="0">${e(w)}</textPath></text></g></svg>`;
 }
 function draw(){
  const p=D.profile,S=D.sections.filter(s=>s.visible!==false),ar=lang=='ar',nm=t(p.name);
@@ -68,7 +67,7 @@ function draw(){
   <div class="ln"><a href="tel:${e(p.phone)}" dir="ltr">${I_TEL}${e(p.phone)}</a><a href="${e(p.linkedin)}" target="_blank" rel="noopener">${I_IN}${e(u('linkedin'))}</a></div>
   <p style="margin-top:48px;font-size:14px">© ${new Date().getFullYear()} ${e(nm)}</p></div></footer>`;
  $('#lg').onclick=()=>{lang=ar?'en':'ar';LS.set('lang',lang);draw()};
- if(calm)document.querySelectorAll('.ring animate').forEach(a=>a.remove());
+ if(calm)document.querySelectorAll('.ring animateTransform').forEach(a=>a.remove());
  document.querySelectorAll('.proj').forEach(pj=>{
   const tog=()=>{const o=pj.classList.toggle('open');pj.setAttribute('aria-expanded',o)};
   pj.onclick=ev=>{if(ev.target.closest('a,video,iframe'))return;tog()};
@@ -79,21 +78,24 @@ function draw(){
 }
 /* ---------- pen cursor + handwriting scribbles ---------- */
 const PEN='<svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#111113" stroke-width="1.3" stroke-linejoin="round"><path d="M7.4 28.1l4.5 4.5 14.1-14.1-4.5-4.5z" fill="#f78fb9"/><path d="M16.6 18.9l2.1-2.1 4.5 4.5-2.1 2.1z" fill="#9fdcb0"/><path d="M4 36l3.4-7.9 4.5 4.5z" fill="#fbe6d4"/><path d="M21.5 13.9l4.5 4.5 2.8-2.8-4.5-4.5z" fill="#f6f2f4"/></g><path d="M4 36l1.6-3.7 2.1 2.1z" fill="#111113"/></svg>';
-let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,gx=0,gy=0,lx=0,ly=0,moved=false,cu,cs;
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,gx=0,gy=0,lx=0,ly=0,moved=false,cu,cs,pl;
 function mkCursor(){cu=document.createElement('div');cu.className='cu';cu.style.opacity=0;cu.innerHTML='<div class="cs">'+PEN+'</div>';document.body.append(cu);cs=cu.firstChild;document.documentElement.classList.add('fx')}
-/* a line of "writing": loops and strokes that look like handwriting but never form readable letters */
-function scrPath(w){let x=0,d='M0 12';while(x<w){const k=Math.random(),s=4+Math.random()*6,h=4+Math.random()*9;
+/* dark ruled paper behind everything: its lines light up softly where the pen passes */
+const LH=36;
+(function mkPaper(){const a=document.createElement('div'),b=document.createElement('div'),c=document.createElement('div');
+ a.className='paper';b.className='paper lit';c.className='pfx';document.body.prepend(c);document.body.prepend(b);document.body.prepend(a);pl=b})();
+/* a hint of handwriting resting on a paper line: loops and strokes, never readable letters */
+function scrPath(w){let x=0,d='M0 12';while(x<w){const k=Math.random(),s=4+Math.random()*6,h=3+Math.random()*7;
  if(k<.35)d+=`c${s*.2} ${-h} ${s*.8} ${-h} ${s} 0`;
- else if(k<.6)d+=`c${s*.2} ${h*.6} ${s*.8} ${h*.6} ${s} 0`;
- else if(k<.85)d+=`c${s*.6} ${-h} ${-s*.3} ${-h} ${s*.1} 0c${s*.3} ${h*.5} ${s*.7} ${h*.5} ${s*.9} 0`;
- else d+=`l${s*.5} ${-h*1.3} l${s*.5} ${h*1.3}`;x+=s}return d}
-function hatchPath(){let d='M0 12';for(let i=0;i<7;i++){const s=7+Math.random()*3;d+=`l${s} ${-9-Math.random()*3} l${-s*.5} ${10+Math.random()*3}`}return d}
-function write(x,y,hatch){if(document.querySelectorAll('.wr').length>16)return;
- const w=hatch?60:36+Math.random()*44,n=document.createElementNS('http://www.w3.org/2000/svg','svg');
- n.setAttribute('class','wr'+(hatch?' h':'')+(Math.random()<.14?' g':''));n.setAttribute('viewBox',`-2 -4 ${w+8} 30`);n.setAttribute('width',w+8);n.setAttribute('height',30);
- n.style.left=x+'px';n.style.top=y+'px';n.style.transform=`translate(-6px,-12px) rotate(${(Math.random()*10-5).toFixed(1)}deg)`;
- n.innerHTML=`<path pathLength="1" d="${hatch?hatchPath():scrPath(w)}"/>`;
- n.firstChild.onanimationend=()=>n.remove();document.body.append(n)}
+ else if(k<.6)d+=`c${s*.2} ${h*.5} ${s*.8} ${h*.5} ${s} 0`;
+ else if(k<.85)d+=`c${s*.6} ${-h} ${-s*.3} ${-h} ${s*.1} 0c${s*.3} ${h*.4} ${s*.7} ${h*.4} ${s*.9} 0`;
+ else d+=`l${s*.5} ${-h*1.2} l${s*.5} ${h*1.2}`;x+=s}return d}
+function inkLine(x,y){const box=document.querySelector('.pfx');if(!box||box.childElementCount>6)return;
+ const line=35.5+LH*Math.round((y-35.5)/LH),w=34+Math.random()*40,n=document.createElementNS('http://www.w3.org/2000/svg','svg');
+ n.setAttribute('viewBox',`-2 -4 ${w+8} 30`);n.setAttribute('width',w+8);n.setAttribute('height',30);
+ n.style.left=(x-w*.7)+'px';n.style.top=(line-16)+'px';
+ n.innerHTML=`<path pathLength="1" d="${scrPath(w)}"/>`;
+ n.firstChild.onanimationend=()=>n.remove();box.append(n)}
 addEventListener('pointermove',ev=>{
  mx=ev.clientX;my=ev.clientY;
  if(!moved){moved=true;cx=gx=lx=mx;cy=gy=ly=my}
@@ -101,14 +103,16 @@ addEventListener('pointermove',ev=>{
  if(!cu){mkCursor();cx=mx;cy=my}
  cu.style.opacity=1;
  cu.classList.toggle('hv',!!(ev.target.closest&&ev.target.closest('a,button,[role=button],.lang,input,textarea,select,label')));
- if(!calm&&Math.hypot(mx-lx,my-ly)>46){lx=mx;ly=my;write(mx,my+4)}
+ if(!calm&&Math.hypot(mx-lx,my-ly)>90){lx=mx;ly=my;inkLine(mx,my)}
 });
-addEventListener('pointerdown',ev=>{if(cu)cu.classList.add('dn');if(!calm&&fine&&ev.pointerType!='touch')write(ev.clientX,ev.clientY+6,true)});
+addEventListener('pointerdown',()=>{if(cu)cu.classList.add('dn')});
 addEventListener('pointerup',()=>cu&&cu.classList.remove('dn'));
-document.documentElement.addEventListener('mouseleave',()=>{if(cu)cu.style.opacity=0});
+document.documentElement.addEventListener('mouseleave',()=>{if(cu)cu.style.opacity=0;if(pl)pl.style.opacity=0});
+document.documentElement.addEventListener('mouseenter',()=>{if(pl)pl.style.opacity=1});
 (function tick(){
  const g=$('#gl');cx+=(mx-cx)*.45;cy+=(my-cy)*.45;gx+=(mx-gx)*.1;gy+=(my-gy)*.1;
  if(g)g.style.transform=`translate(${gx}px,${gy}px)`;
+ if(pl&&fine&&moved){pl.style.setProperty('--mx',gx+'px');pl.style.setProperty('--my',gy+'px')}
  if(cu)cu.style.transform=`translate(${cx}px,${cy}px)`;
  requestAnimationFrame(tick)})();
 /* ---------- routing ---------- */
