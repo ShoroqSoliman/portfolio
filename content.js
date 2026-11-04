@@ -8,10 +8,14 @@ window.CONTENT={
    "en": "Content Creator & Copywriter",
    "ar": "كاتبة محتوى و Copywriter"
   },
+  "bio": {
+   "en": "Results-driven content creator with 4+ years in digital marketing: ad copy that converts, SEO strategy and video scripts across Egypt, Saudi Arabia and the UAE. My background in theater directing shapes how I tell stories on screen.",
+   "ar": "كاتبة محتوى بخبرة أكتر من 4 سنين في الديجيتال ماركتنج: إعلانات بتبيع، استراتيجيات SEO، وسكريبتات فيديو في مصر والسعودية والإمارات. خلفيتي في إخراج المسرح بتدّي شغلي حكي بصري أقوى."
+  },
   "email": "shorouksoliman000@gmail.com",
   "phone": "+201080568318",
   "linkedin": "https://www.linkedin.com/in/shorouq-soliman-8b2a94400/",
-  "photo": "photo-v4.webp",
+  "photo": "photo.webp",
   "stats": [
    {
     "n": "4+",
@@ -27,22 +31,7 @@ window.CONTENT={
      "ar": "أسواق: مصر والسعودية والإمارات"
     }
    }
-  ],
-  "lines": [
-   {
-    "en": "Results-driven content creator with 4+ years in digital marketing: ad copy that converts, SEO strategy and video scripts across Egypt, Saudi Arabia and the UAE. My background in theater directing shapes how I tell stories on screen.",
-    "ar": "كاتبة محتوى بخبرة أكتر من 4 سنين في الديجيتال ماركتنج: إعلانات بتبيع، استراتيجيات SEO، وسكريبتات فيديو في مصر والسعودية والإمارات. خلفيتي في إخراج المسرح بتدّي شغلي حكي بصري أقوى."
-   }
-  ],
-  "logo": "S.S",
-  "ring": {
-   "en": "Creativity is like breathing.. essential",
-   "ar": "Creativity is like breathing.. essential"
-  },
-  "strip": {
-   "en": "Ad Copywriting, Scriptwriting, Storyboarding, Social Media Content, SEO Content",
-   "ar": "كتابة إعلانات, سكريبتات, ستوري بورد, محتوى سوشيال ميديا, محتوى SEO"
-  }
+  ]
  },
  "sections": [
   {
@@ -66,6 +55,23 @@ window.CONTENT={
       "en": "Ad Copywriting, Scriptwriting, Storyboarding, Social Media Content, SEO Content",
       "ar": "كتابة إعلانات, سكريبتات, ستوري بورد, محتوى سوشيال ميديا, محتوى SEO"
      }
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
     }
    ]
   },
@@ -188,9 +194,81 @@ window.CONTENT={
       "en": "Conversion copy for Snapchat, TikTok, Instagram and Twitter, tailored to the GCC market.",
       "ar": "كوبي بيحوّل على سناب وتيك توك وإنستجرام وتويتر، مخصص لسوق الخليج."
      }
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
     }
    ],
    "layout": "timeline"
+  },
+  {
+   "id": "directing",
+   "visible": true,
+   "title": {
+    "en": "Directing",
+    "ar": "الإخراج"
+   },
+   "cover": {
+    "src": "directing.webp",
+    "type": "image"
+   },
+   "blocks": [
+    {
+     "kind": "text",
+     "text": {
+      "en": "A background in theater directing: I direct actors on set so a script turns into a performance on screen.",
+      "ar": "خلفيتي في إخراج المسرح: بخرّج الممثلين في الموقع عشان السكريبت يتحول لأداء على الشاشة."
+     }
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
+    }
+   ]
   },
   {
    "id": "skills",
@@ -213,6 +291,23 @@ window.CONTENT={
       "en": "Creative Problem Solving, Team Leadership & Mentoring, Agile Planning, Cross-functional Collaboration, Client Pitching",
       "ar": "حل مشاكل إبداعي, قيادة وتدريب فريق, تخطيط Agile, تعاون بين الفرق, عرض للعملاء"
      }
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
     }
    ]
   },
@@ -282,11 +377,7 @@ window.CONTENT={
      "src": "",
      "link": ""
     }
-   ],
-   "cover": {
-    "src": "work-banner-v3.webp",
-    "type": "image"
-   }
+   ]
   },
   {
    "id": "brands",
@@ -330,6 +421,23 @@ window.CONTENT={
      "kind": "logo",
      "name": "Sumoue",
      "src": ""
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
     }
    ]
   },
@@ -370,39 +478,26 @@ window.CONTENT={
      "text": {
       "en": ""
      }
+    },
+    {
+     "kind": "project",
+     "title": {
+      "en": "",
+      "ar": ""
+     },
+     "sub": {
+      "en": "",
+      "ar": ""
+     },
+     "text": {
+      "en": "",
+      "ar": ""
+     },
+     "src": "",
+     "link": ""
     }
    ]
   }
  ],
- "pwh": "888f234c529f062df75b23bb2cd92cef5fdb3b00a8d09f1c7fe4b5b07f966389",
- "ui": {
-  "contact": {
-   "en": "Contact",
-   "ar": "تواصل"
-  },
-  "workWithMe": {
-   "en": "Work with me",
-   "ar": "نشتغل مع بعض"
-  },
-  "linkedin": {
-   "en": "LinkedIn",
-   "ar": "LinkedIn"
-  },
-  "gotProject": {
-   "en": "Got a project?",
-   "ar": "عندك مشروع؟"
-  },
-  "openProject": {
-   "en": "Open project",
-   "ar": "افتح المشروع"
-  },
-  "projectSoon": {
-   "en": "Project coming soon",
-   "ar": "مشروع قريبًا"
-  },
-  "projectSoonBox": {
-   "en": "Coming soon… this project is being prepared",
-   "ar": "قريبًا… المشروع ده لسه بيتجهز"
-  }
- }
+ "pwh": "888f234c529f062df75b23bb2cd92cef5fdb3b00a8d09f1c7fe4b5b07f966389"
 };

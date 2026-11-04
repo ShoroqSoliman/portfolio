@@ -2,8 +2,6 @@
 const $=s=>document.querySelector(s);
 const LS={get:k=>{try{return localStorage.getItem(k)}catch(x){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(x){}}};
 const BASE=window.CONTENT;
-function norm(d){d.ui=Object.assign({},BASE.ui,d.ui||{});const p=d.profile;['logo','ring','strip'].forEach(k=>{if(p[k]==null)p[k]=JSON.parse(JSON.stringify(BASE.profile[k]))});if(!p.lines)p.lines=p.bio?[p.bio]:[];return d}
-norm(BASE);
 let D=BASE,lang=LS.get('lang')||'ar',authed=false,cur='pro',io;
 const t=o=>!o?'':typeof o=='string'?o:(o[lang]||o.en||o.ar||'');
 const e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -15,7 +13,6 @@ function gate(){
  $('#pwb').onclick=ok;$('#pwi').onkeydown=ev=>{if(ev.key=='Enter')ok()};
 }
 const SCH={text:[['text','Text','bia']],card:[['title','Title','bi'],['sub','Subtitle','bi'],['date','Date','pl'],['text','Description','bia']],tags:[['text','Tags, separated by commas','bi']],media:[['src','Image or video','file']],logo:[['name','Company name','pl'],['src','Logo image','file']],project:[['title','Project title','bi'],['sub','Category / client','bi'],['text','Description','bia'],['src','Project image or video (opens between the two lines)','file'],['link','Project link (optional)','pl']]};
-const UI={contact:'Menu: Contact',workWithMe:'Main button',linkedin:'LinkedIn button',gotProject:'Footer headline',openProject:'Open project button',projectSoon:'Empty project title',projectSoonBox:'Empty project message'};
 const NAMES={text:'Text',card:'Card',tags:'Tags',media:'Image / Video',logo:'Company logo',project:'Project'};
 function h(tag,a={},...k){const n=document.createElement(tag);Object.assign(n,a);k.flat().forEach(x=>x!=null&&n.append(x));return n}
 const btn=(txt,fn,cls='mini')=>h('button',{className:cls,textContent:txt,onclick:fn,type:'button'});
@@ -51,13 +48,7 @@ function R(){
   btn('Discard draft',()=>{if(confirm('Discard changes not yet downloaded?')){LS.set('draft','');D=BASE;R()}}));
  if(cur=='pro'){const p=D.profile;
   main.append(h('h2',{textContent:'Profile & contact'}),h('div',{className:'hint',textContent:'Edit anything, then press Download content.js and replace the old file on your site.'}),
-   h('div',{className:'box'},F(p,'name','Name','bi'),F(p,'title','Job title','bi'),F(p,'photo','Photo (square image recommended)','file')),
-   h('div',{className:'box'},h('label',{textContent:'Intro lines under the name: edit, add, delete or reorder any sentence'}),
-    (p.lines=p.lines||[]).map((x,i)=>h('div',{className:'row'},F(p.lines,i,'Line '+(i+1),'bia'),btn('↑',()=>mv(p.lines,i,-1)),btn('↓',()=>mv(p.lines,i,1)),btn('✕',()=>{p.lines.splice(i,1);save();R()}))),
-    btn('+ Add line',()=>{p.lines.push({en:'',ar:''});save();R()})),
-   h('div',{className:'box'},F(p,'logo','Logo text in the top bar (e.g. S.S)','pl'),F(p,'ring','Text moving around the photo','bi'),F(p,'strip','Moving pink strip (separate items with commas)','bia')),
-   h('div',{className:'box'},h('label',{textContent:'Buttons, menu and footer texts'}),
-    Object.keys(UI).map(k=>F(D.ui,k,UI[k],'bi'))),
+   h('div',{className:'box'},F(p,'name','Name','bi'),F(p,'title','Job title','bi'),F(p,'bio','Short bio','bia'),F(p,'photo','Photo (square image recommended)','file')),
    h('div',{className:'box'},F(p,'email','Email','pl'),F(p,'phone','Phone','pl'),F(p,'linkedin','LinkedIn URL','pl')),
    h('div',{className:'box'},h('label',{textContent:'Hero stats'}),(p.stats=p.stats||[]).map((x,i)=>h('div',{className:'row'},F(x,'n','Number','pl'),F(x,'l','Label','bi'),btn('✕',()=>{p.stats.splice(i,1);save();R()}))),btn('+ Add stat',()=>{p.stats.push({n:'',l:{en:'',ar:''}});R()})),
    h('div',{className:'box'},h('label',{textContent:'New admin password'}),h('input',{type:'password',placeholder:'Leave empty to keep the current one',onchange:async ev=>{if(ev.target.value){D.pwh=await sha(ev.target.value);save();setSt('Password changed. Download content.js to apply it.')}}})));
@@ -75,5 +66,5 @@ function R(){
   SCH[b.kind].map(f=>F(b,...f)))));
  main.append(h('div',{className:'row'},Object.keys(NAMES).map(k=>btn('+ '+NAMES[k],()=>{s.blocks.push({kind:k});save();R()}))));
 }
-try{const dr=LS.get('draft');D=dr?norm(JSON.parse(dr)):BASE}catch(x){D=BASE}
+try{const dr=LS.get('draft');D=dr?JSON.parse(dr):BASE}catch(x){D=BASE}
 gate();
